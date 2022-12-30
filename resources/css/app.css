@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@layer components{
+    .border-style{
+        @apply border-gray-400;
+    }
+    .scroll-fixed{
+        @apply h-screen overflow-hidden;
+    }
+    .text-style{
+        @apply text-sm font-serif;
+    }
+    .flex-center{
+        @apply flex justify-center items-center;
+    }
+}
+
+@tailwind utilities;
+
+[x-cloak]  {display: none;}
