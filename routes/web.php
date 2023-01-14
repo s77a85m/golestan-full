@@ -17,4 +17,10 @@ Route::get('/', function () {
     return view('Home.index');
 });
 
+Route::controller(\App\Http\Controllers\Admin\RoleController::class)->group(function (){
+    Route::get('/admin/role_gss_e_group/', 'index')->name('admin.role.index');
+    Route::post('/admin/role_gss_e_group/create', 'store')->name('admin.role.create');
+    Route::get('/show_permissions_of_role', 'permissions')->name('admin.role.show.permission');
+});
+
 

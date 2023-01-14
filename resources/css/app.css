@@ -8,7 +8,7 @@
         @apply h-screen overflow-hidden;
     }
     .text-style{
-        @apply text-sm font-serif;
+        @apply text-xs font-serif;
     }
     .flex-center{
         @apply flex justify-center items-center;
@@ -18,3 +18,16 @@
 @tailwind utilities;
 
 [x-cloak]  {display: none;}
+
+@layer base{
+    @font-face {
+        font-family: "IRANSans";
+        font-weight: 400;
+        src: url('../fonts/iransansweb.woff') format('woff'),url('../fonts/iransansweb.woff2') format('woff2'),
+        url('../fonts/iransansweb.ttf') format('truetype');
+        src: url('../fonts/IRANSansWeb.eot');
+    }
+    html {
+        font-family: IRANSans;
+    }
+}
