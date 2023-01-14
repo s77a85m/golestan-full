@@ -50,11 +50,15 @@
                                             </svg>
                                         </button>
                                         <!--                                delete -->
-                                        <button class="w-8 p-1 text-white bg-red-500 rounded-sm flex-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                                                <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
+                                        <form action="{{route('admin.role.delete', $role)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="w-8 p-1 text-white bg-red-500 rounded-sm flex-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                                    <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -149,17 +153,18 @@
                     <div x-on:click.away="closeEdit()"
                          class="relative flex flex-col w-1/2 gap-10 px-3 bg-gray-100 rounded-md">
                         <div class="w-full"><span class="text-xs font-bold">جدید</span></div>
-                        <form id="edit-role-form" action="{{route('admin.role.create')}}" method="post" class="flex flex-col w-full gap-1">
+                        <form id="edit-role-form" action="{{route('admin.role.update', $role)}}" method="post" class="flex flex-col w-full gap-1">
                             @csrf
+                            @method('PATCH')
                             <div class="flex flex-col gap-3">
                                 <div class="flex flex-row">
                                     <div class="flex flex-col w-full gap-2 p-2">
-                                        <!--                                        full name-->
+                                        <!--                                        title-->
                                         <div class="flex flex-row gap-3">
                                             <label for="fullNameEdit" class="after:content-['*'] after:text-red-500">عنوان</label>
                                             <input type="text" name="title" id="fullNameEdit" class="w-2/3 h-8 px-2 border border-gray-300 rounded-md outline-0">
                                         </div>
-                                        <!--                                        phone -->
+                                        <!--                                        permissions -->
                                         <div class="flex flex-col gap-3 mr-14">
                                             <div>
                                                 <input type="checkbox" class="absolute top-0 invisible radio-checked:bg-purple-500 radio-checked:text-white" id="selectAllEdit">
@@ -259,6 +264,7 @@
             let all_permission_id = `{{$permissions->pluck('id')}}`;
             let all_child = document.getElementById("parent_roles").children;
             let input_title = document.getElementById("fullNameEdit");
+            let edit_form = document.getElementById("edit-role-form");
             $.ajax({
                 type : 'get',
                 url : '/show_permissions_of_role',
@@ -275,6 +281,9 @@
                             all_child[i].children[0].checked = true;
                         }
                     }
+
+                    // edit action form
+                    edit_form.action = 'http://127.0.0.1:8000/admin/role_gss_e_group/update/'+id
                 },
                 error : function (data){
                     console.log(data);

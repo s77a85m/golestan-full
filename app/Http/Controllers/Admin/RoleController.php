@@ -42,4 +42,22 @@ class RoleController extends Controller
             ]
         ])->setStatusCode(200);
     }
+
+    public function update(Request $request, Role $role)
+    {
+        $role->update([
+            'title' => $request->get('title')
+        ]);
+        $role->permissions()->sync($request->get('permissionsEdit'));
+
+        return redirect(route('admin.role.index'));
+    }
+
+    public function destroy(Role $role)
+    {
+        $role->permissions()->detach();
+        $role->delete();
+
+        return redirect(route('admin.role.index'));
+    }
 }

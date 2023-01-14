@@ -21,6 +21,8 @@ Route::controller(\App\Http\Controllers\Admin\RoleController::class)->group(func
     Route::get('/admin/role_gss_e_group/', 'index')->name('admin.role.index');
     Route::post('/admin/role_gss_e_group/create', 'store')->name('admin.role.create');
     Route::get('/show_permissions_of_role', 'permissions')->name('admin.role.show.permission');
+    Route::patch('/admin/role_gss_e_group/update/{role}', 'update')->name('admin.role.update');
+    Route::delete('/admin/role_gss_e_group/delete/{role}', 'destroy')->name('admin.role.delete');
 });
 
 
