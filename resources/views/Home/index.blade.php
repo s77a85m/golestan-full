@@ -49,9 +49,9 @@
                                     <label for="pass" class="flex items-center font-iransans font-medium text-style">رمز عبور:</label>
                                     <input autocomplete="off" type="text" id="pass" dir="ltr" name="password" class="w-3/4 px-3 text-left bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
                                 </div>
-                                <div class="flex justify-start pr-[53px] gap-1 flex-row">
+                                <div class="flex flex-row justify-end gap-1">
                                     <label for="capcha" class="flex items-center font-iransans font-medium text-style">کد کپچا:</label>
-                                    <input autocomplete="off" type="text" id="capcha" dir="ltr" name="capcha" class="w-1/3 px-3 text-left bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
+                                    <input autocomplete="off" type="text" id="capcha" dir="ltr" name="capcha" class="w-3/4 px-3 text-left bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
                                 </div>
                             </div>
                             <!-- capcha -->
@@ -65,14 +65,15 @@
                         </div>
                     </form>
                     <!-- registerForm -->
-                    <form x-show="formType=='register'" x-cloak id="registerForm" action="#" enctype="multipart/form-data" class="w-[800px] flex mt-10 gap-10 flex-col">
+                    <form x-show="formType=='register'" x-cloak id="registerForm" method="post" action="{{route('register')}}" enctype="multipart/form-data" class="w-[800px] flex mt-10 gap-10 flex-col">
+                        @csrf
                         <div class="flex flex-row w-full gap-2">
                             <!-- part1 -->
                             <div class="flex flex-col flex-1 gap-2">
                                 <!-- name -->
                                 <div class="flex flex-row justify-end gap-1">
-                                    <label for="name" class="after:content-['*'] after:text-red-500 font-iransans font-medium text-style flex items-center">نام</label>
-                                    <input autocomplete="off" type="text" id="name"  name="name" class="w-3/4 px-3 bg-gray-200 rounded-md font-iransans font-medium text-style h-9 focus:ring-0 focus:outline-none">
+                                    <label for="firstname" class="after:content-['*'] after:text-red-500 font-iransans font-medium text-style flex items-center">نام</label>
+                                    <input autocomplete="off" type="text" id="firstname"  name="firstname" class="w-3/4 px-3 bg-gray-200 rounded-md font-iransans font-medium text-style h-9 focus:ring-0 focus:outline-none">
                                 </div>
                                 <!-- lastname -->
                                 <div class="flex flex-row justify-end gap-1">
@@ -94,13 +95,14 @@
                                     <label for="email" class="after:content-['*'] after:text-red-500 text-style font-iransans font-medium flex items-center">ایمیل</label>
                                     <input autocomplete="off" type="text" id="email" dir="ltr" name="email" class="w-3/4 px-3 bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
                                 </div>
-                                <!-- degri -->
+                                <!-- grade -->
                                 <div class="flex flex-row justify-end gap-1">
-                                    <label for="degri" class="after:content-['*'] after:text-red-500 text-style font-iransans font-medium flex items-center">مقطع تحصیلی</label>
-                                    <select name="degri" id="degri" class="w-3/4 px-2 bg-gray-100 rounded-md text-style h-9 font-iransans font-medium focus:ring-0 focus:outline-none">
+                                    <label for="grade" class="after:content-['*'] after:text-red-500 text-style font-iransans font-medium flex items-center">مقطع تحصیلی</label>
+                                    <select name="grade" id="grade" class="w-3/4 px-2 bg-gray-100 rounded-md text-style h-9 font-iransans font-medium focus:ring-0 focus:outline-none">
                                         <option selected disabled>مقطع تحصیلی </option>
-                                        <option value="1">کارشناسی ارشد</option>
-                                        <option value="2">کارشناسی ناپیوسته</option>
+                                        @foreach($grades as $grade)
+                                            <option value="{{$grade->id}}">{{$grade->title}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -114,24 +116,21 @@
                                     <input onchange="showPreview(event);" accept="image/jpeg, image/png, image/jpg" id="image-input" type="file" name="image" class="invisible">
                                 </div>
                                 <div class="flex flex-col gap-2">
-                                    <!-- field -->
+                                    <!-- major -->
                                     <div class="flex flex-row justify-end gap-1">
-                                        <label for="field" class="after:content-['*'] after:text-red-500 text-style flex font-iransans font-medium items-center">رشته تحصیلی</label>
-                                        <select name="field" id="field" class="w-3/4 px-2 bg-gray-100 rounded-md text-style font-iransans font-medium h-9 focus:ring-0 focus:outline-none">
+                                        <label for="major" class="after:content-['*'] after:text-red-500 text-style flex font-iransans font-medium items-center">رشته تحصیلی</label>
+                                        <select onchange="select_orientation()" name="major" id="major" class="w-3/4 px-2 bg-gray-100 rounded-md text-style font-iransans font-medium h-9 focus:ring-0 focus:outline-none">
                                             <option selected disabled>رشته تحصیلی</option>
-                                            <option value="1">مهندسی برق</option>
-                                            <option value="2">مهندسی کامپیوتر</option>
-                                            <option value="2">مهندسی صنایع</option>
-                                            <option value="2">مهندسی مکانیک</option>
+                                            @foreach($majors as $major)
+                                                <option value="{{$major->id}}">{{$major->title}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
-                                    <!-- degri -->
+                                    <!-- grade -->
                                     <div class="flex flex-row justify-end gap-1">
-                                        <label for="trend" class="after:content-['*'] after:text-red-500 text-style flex font-iransans font-medium items-center">گرایش</label>
-                                        <select name="trend" id="trend" class="w-3/4 px-2 bg-gray-100 rounded-md text-style font-iransans font-medium h-9 focus:ring-0 focus:outline-none">
-                                            <option selected disabled>مقطع تحصیلی </option>
-                                            <option value="1">کارشناسی ارشد</option>
-                                            <option value="2">کارشناسی ناپیوسته</option>
+                                        <label for="orientation" class="after:content-['*'] after:text-red-500 text-style flex font-iransans font-medium items-center">گرایش</label>
+                                        <select name="orientation" id="orientation" class="w-3/4 px-2 bg-gray-100 rounded-md text-style font-iransans font-medium h-9 focus:ring-0 focus:outline-none">
+                                            <option selected disabled>گرایش </option>
                                         </select>
                                     </div>
                                 </div>
@@ -188,6 +187,7 @@
 <!-- end main -->
 
 <!-- scripts -->
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 <script>
     // handle type of signIN and singUp
     function registerMenu() {
@@ -202,6 +202,7 @@
                 this.openMenu = false;
                 document.getElementById("loginForm").reset();
                 document.getElementById("registerForm").reset();
+                document.getElementById("orientation").innerHTML = '<option selected disabled>گرایش </option>'
                 document.getElementById("file-ip-1-preview").src = "{{asset('assets/images/statics/user.jpg')}}";
             },
             loginForm(){
@@ -222,6 +223,32 @@
             perview.src = src;
         }
     }
+
+    // handle get orient
+    function select_orientation(){
+        let id = document.getElementById('major').value;
+        $.ajax({
+            type : 'get',
+            url : '/get_orientation_of_major',
+            data : {
+                _token : "{{csrf_token()}}",
+                major_id : id
+            },
+            success : function (data){
+                let select_orient = document.getElementById('orientation');
+                select_orient.innerHTML = '';
+                for(let i = 0; i<data.orients.length; i++){
+                    let opt = document.createElement('option');
+                    opt.value = data.orients[i].id;
+                    opt.innerHTML = data.orients[i].title;
+                    select_orient.appendChild(opt);
+                }
+            },
+            error : function (data){
+                console.log(data);
+            },
+        })
+     }
 </script>
 </body>
 

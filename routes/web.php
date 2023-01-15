@@ -13,16 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('Home.index');
+
+// homeController
+Route::controller(\App\Http\Controllers\Client\HomeController::class)->group(function (){
+    Route::get('/', 'index')->name('home');
+    Route::get('/get_orientation_of_major', 'orientation')->name('get.orientation.major');
 });
 
+// RoleController
 Route::controller(\App\Http\Controllers\Admin\RoleController::class)->group(function (){
     Route::get('/admin/role_gss_e_group/', 'index')->name('admin.role.index');
     Route::post('/admin/role_gss_e_group/create', 'store')->name('admin.role.create');
     Route::get('/show_permissions_of_role', 'permissions')->name('admin.role.show.permission');
     Route::patch('/admin/role_gss_e_group/update/{role}', 'update')->name('admin.role.update');
     Route::delete('/admin/role_gss_e_group/delete/{role}', 'destroy')->name('admin.role.delete');
+});
+
+// RegisterController
+Route::controller(\App\Http\Controllers\Client\RegisterController::class)->group(function (){
+    Route::post('/register', 'store')->name('register');
 });
 
 
