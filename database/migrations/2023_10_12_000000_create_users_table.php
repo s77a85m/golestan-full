@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('national_name')->unique();
             $table->string('mobile')->unique();
-            $table->integer('stuNum')->unique();
+            $table->string('stuNum')->unique();
             $table->string('avatar');
             $table->string('slug')->nullable();
             $table->foreignId('grade_id')->constrained('grades');

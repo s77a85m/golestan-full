@@ -22,13 +22,13 @@
                     </div>
                 </div>
                 <div class="flex items-center justify-start">
-                    <table class="w-1/2 overflow-hidden bg-white rounded-md shadow-md ">
+                    <table class="w-full overflow-hidden bg-white rounded-md shadow-md ">
                         <thead>
                         <tr>
                             <th class="w-8 p-2 border-2 border-t-0 border-b-0 border-l-0 border-r-0 border-gray-300">ردیف
                             </th>
                             <th class="p-2 border-2 border-t-0 border-b-0 border-l-0 border-gray-300">عنوان</th>
-                            <th class="p-2 border-2 border-t-0 border-b-0 border-l-0 border-gray-300">فرآیند</th>
+                            <th class="p-2 w-52 border-2 border-t-0 border-b-0 border-l-0 border-gray-300">فرآیند</th>
                         </tr>
                         </thead>
                         <tbody class="text-center">
