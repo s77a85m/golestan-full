@@ -30,33 +30,35 @@
                  x-transition:enter-start="opacity-0 " x-transition:enter-end="opacity-100 "
                  x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100"
                  x-transition:leave-end="opacity-0" x-cloak class="fixed inset-0 z-10 flex items-center justify-center">
-                <div x-on:click.away="closmenu()" class="relative border-2 border-gray-300 flex flex-col gap-3 p-3 bg-white rounded-md">
+                <div x-on:click.away="closmenu()" class="relative shadow-gray-300 shadow-md border-2 border-gray-300 flex flex-col gap-3 p-3 bg-white rounded-md">
                     <!-- select type -->
                     <div class="flex justify-center gap-20">
-                        <span x-on:click="loginForm()" x-cloak x-bind:class="{'bg-gray-300 rounded-md' : formType=='login'}" class="p-2 cursor-pointer font-iransans font-medium text-style">ورود به سیستم</span>
-                        <span x-on:click="registerForm()" x-cloak x-bind:class="{'bg-gray-300 rounded-md' : formType=='register'}" class="p-2 cursor-pointer font-iransans font-medium text-style">ثبت نام دانشجو</span>
+                        <span x-on:click="loginForm()" x-cloak x-bind:class="{'bg-gray-300 rounded-md' : formType=='login'}" class="p-2 cursor-pointer  shadow-md font-iransans font-medium text-style">ورود به سیستم</span>
+                        <span x-on:click="registerForm()" x-cloak x-bind:class="{'bg-gray-300 rounded-md' : formType=='register'}" class="p-2 cursor-pointer shadow-gray-300 shadow-md font-iransans font-medium text-style">ثبت نام دانشجو</span>
                     </div>
                     <!-- loginForm -->
-                    <form x-show="formType=='login'" x-cloak id="loginForm" accept="#" class="w-[570px] flex  mt-10 gap-10 flex-col">
+                    <form x-show="formType=='login'" method="post" x-cloak id="loginForm" action="{{route('student.login')}}" class="w-[570px] flex  mt-10 gap-10 flex-col">
+                        @csrf
                         <div class="flex flex-row gap-2">
                             <!-- inputs -->
                             <div class="flex flex-col gap-2 flex-none w-[380px]">
                                 <div class="flex flex-row justify-end gap-1">
                                     <label for="uid" class="flex items-center font-iransans font-medium text-style">نام کاربری:</label>
-                                    <input autocomplete="off" type="text" id="uid" dir="ltr" name="uid" class="w-3/4 px-3 bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
+                                    <input autocomplete="off" type="text" id="uid" dir="ltr" name="username" class="w-3/4 shadow-md shadow-gray-300 px-3 bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
                                 </div>
                                 <div class="flex flex-row justify-end gap-1">
                                     <label for="pass" class="flex items-center font-iransans font-medium text-style">رمز عبور:</label>
-                                    <input autocomplete="off" type="text" id="pass" dir="ltr" name="password" class="w-3/4 px-3 text-left bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
+                                    <input autocomplete="off" type="text" id="pass" dir="ltr" name="password" class="w-3/4 shadow-md shadow-gray-300 px-3 text-left bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
                                 </div>
                                 <div class="flex flex-row justify-end gap-1">
-                                    <label for="capcha" class="flex items-center font-iransans font-medium text-style">کد کپچا:</label>
-                                    <input autocomplete="off" type="text" id="capcha" dir="ltr" name="capcha" class="w-3/4 px-3 text-left bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
+                                    <label for="captcha" class="flex items-center font-iransans font-medium text-style">کد کپچا:</label>
+                                    <input autocomplete="off" type="text" id="captcha" dir="ltr" name="captcha" class="w-3/4 shadow-md shadow-gray-300 px-3 text-left bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
                                 </div>
                             </div>
                             <!-- capcha -->
-                            <div class="flex-1 px-3">
-                                <div class="w-full h-full bg-red-200 rounded-md flex-center">1234</div>
+                            <div class="flex-1 flex gap2 flex-col px-3">
+                                <div class="w-full h-full bg-red-200 rounded-md flex-center"><img id="box_captcha" src="{{captcha_src('flat')}}" alt="captcha"></div>
+                                <div onclick="loadCaptcha()" class="cursor-pointer bg-blue-500 text-white flex justify-center items-center rounded-md">reload captcha</div>
                             </div>
                         </div>
                         <!-- submit -->
@@ -73,32 +75,32 @@
                                 <!-- name -->
                                 <div class="flex flex-row justify-end gap-1">
                                     <label for="firstname" class="after:content-['*'] after:text-red-500 font-iransans font-medium text-style flex items-center">نام</label>
-                                    <input autocomplete="off" type="text" id="firstname"  name="firstname" class="w-3/4 px-3 bg-gray-200 rounded-md font-iransans font-medium text-style h-9 focus:ring-0 focus:outline-none">
+                                    <input autocomplete="off" type="text" id="firstname"  name="firstname" class="w-3/4 shadow-gray-300 shadow-md px-3 bg-gray-200 rounded-md font-iransans font-medium text-style h-9 focus:ring-0 focus:outline-none">
                                 </div>
                                 <!-- lastname -->
                                 <div class="flex flex-row justify-end gap-1">
                                     <label for="lastname" class="after:content-['*'] after:text-red-500 text-style font-iransans font-medium flex items-center">نام خانوادگی</label>
-                                    <input autocomplete="off" type="text" id="lastname"  name="lastname" class="w-3/4 px-3 bg-gray-200 rounded-md font-iransans font-medium text-style h-9 focus:ring-0 focus:outline-none">
+                                    <input autocomplete="off" type="text" id="lastname"  name="lastname" class="w-3/4 shadow-gray-300 shadow-md px-3 bg-gray-200 rounded-md font-iransans font-medium text-style h-9 focus:ring-0 focus:outline-none">
                                 </div>
                                 <!-- meliCode -->
                                 <div class="flex flex-row justify-end gap-1">
                                     <label for="melicode" class="after:content-['*'] after:text-red-500 text-style font-iransans font-medium flex items-center">شماره ملی</label>
-                                    <input autocomplete="off" type="text" id="melicode" dir="ltr" name="melicode" class="w-3/4 px-3 bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
+                                    <input autocomplete="off" type="text" id="melicode" dir="ltr" name="melicode" class="w-3/4 shadow-gray-300 shadow-md px-3 bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
                                 </div>
                                 <!-- phone -->
                                 <div class="flex flex-row justify-end gap-1">
                                     <label for="phone" class="after:content-['*'] after:text-red-500 text-style font-iransans font-medium flex items-center">موبایل</label>
-                                    <input autocomplete="off" type="text" id="phone" dir="ltr" name="phone" class="w-3/4 px-3 bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
+                                    <input autocomplete="off" type="text" id="phone" dir="ltr" name="phone" class="w-3/4 px-3 shadow-gray-300 shadow-md bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
                                 </div>
                                 <!-- email -->
                                 <div class="flex flex-row justify-end gap-1">
                                     <label for="email" class="after:content-['*'] after:text-red-500 text-style font-iransans font-medium flex items-center">ایمیل</label>
-                                    <input autocomplete="off" type="text" id="email" dir="ltr" name="email" class="w-3/4 px-3 bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
+                                    <input autocomplete="off" type="text" id="email" dir="ltr" name="email" class="w-3/4 shadow-gray-300 shadow-md px-3 bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
                                 </div>
                                 <!-- grade -->
                                 <div class="flex flex-row justify-end gap-1">
                                     <label for="grade" class="after:content-['*'] after:text-red-500 text-style font-iransans font-medium flex items-center">مقطع تحصیلی</label>
-                                    <select name="grade" id="grade" class="w-3/4 px-2 bg-gray-100 rounded-md text-style h-9 font-iransans font-medium focus:ring-0 focus:outline-none">
+                                    <select name="grade" id="grade" class="w-3/4 shadow-gray-300 shadow-md px-2 bg-gray-100 rounded-md text-style h-9 font-iransans font-medium focus:ring-0 focus:outline-none">
                                         <option selected disabled>مقطع تحصیلی </option>
                                         @foreach($grades as $grade)
                                             <option value="{{$grade->id}}">{{$grade->title}}</option>
@@ -110,7 +112,7 @@
                             <div class="flex-col flex-1">
                                 <!-- upload image -->
                                 <div class="flex-col flex-center">
-                                    <label class="hover:cursor-pointer" for="image-input">
+                                    <label class="hover:cursor-pointer shadow-gray-300 shadow-md" for="image-input">
                                         <div id="uploaded-image" class="flex-center "><img id="file-ip-1-preview" src="{{asset('assets/images/statics/user.jpg')}}" class="w-[150px] h-[150px]" alt="user"></div>
                                     </label>
                                     <input onchange="showPreview(event);" accept="image/jpeg, image/png, image/jpg" id="image-input" type="file" name="image" class="invisible">
@@ -119,7 +121,7 @@
                                     <!-- major -->
                                     <div class="flex flex-row justify-end gap-1">
                                         <label for="major" class="after:content-['*'] after:text-red-500 text-style flex font-iransans font-medium items-center">رشته تحصیلی</label>
-                                        <select onchange="select_orientation()" name="major" id="major" class="w-3/4 px-2 bg-gray-100 rounded-md text-style font-iransans font-medium h-9 focus:ring-0 focus:outline-none">
+                                        <select onchange="select_orientation()" name="major" id="major" class="w-3/4 shadow-gray-300 shadow-md px-2 bg-gray-100 rounded-md text-style font-iransans font-medium h-9 focus:ring-0 focus:outline-none">
                                             <option selected disabled>رشته تحصیلی</option>
                                             @foreach($majors as $major)
                                                 <option value="{{$major->id}}">{{$major->title}}</option>
@@ -129,7 +131,7 @@
                                     <!-- grade -->
                                     <div class="flex flex-row justify-end gap-1">
                                         <label for="orientation" class="after:content-['*'] after:text-red-500 text-style flex font-iransans font-medium items-center">گرایش</label>
-                                        <select name="orientation" id="orientation" class="w-3/4 px-2 bg-gray-100 rounded-md text-style font-iransans font-medium h-9 focus:ring-0 focus:outline-none">
+                                        <select name="orientation" id="orientation" class="w-3/4 shadow-gray-300 shadow-md px-2 bg-gray-100 rounded-md text-style font-iransans font-medium h-9 focus:ring-0 focus:outline-none">
                                             <option selected disabled>گرایش </option>
                                         </select>
                                     </div>
@@ -288,6 +290,22 @@
     }
 
 
+</script>
+<script>
+    // reload
+    function loadCaptcha(){
+        let box_captcha = document.getElementById('box_captcha');
+        $.ajax({
+            url : '/captcha/reload',
+            type : 'post',
+            data : {
+                _token : "{{csrf_token()}}"
+            },
+            success : function (data){
+                box_captcha.src = data.imageSource;
+            }
+        })
+    }
 </script>
 </body>
 

@@ -32,6 +32,18 @@ Route::controller(\App\Http\Controllers\Admin\RoleController::class)->group(func
 // RegisterController
 Route::controller(\App\Http\Controllers\Client\RegisterController::class)->group(function (){
     Route::post('/register', 'store')->name('register');
+    Route::post('/student/login', 'login')->name('student.login');
+    Route::delete('/student/logout', 'logout')->name('student.logout');
+});
+
+// Captcha
+Route::controller(\App\Http\Controllers\Client\CaptchaController::class)->group(function (){
+    Route::post('/captcha/reload', 'reload')->name('captcha.reload');
+});
+
+// Client dashboard
+Route::controller(\App\Http\Controllers\Client\DashboardController::class)->group(function (){
+    Route::get('/dashboard', 'index')->name('dashboard.info');
 });
 
 

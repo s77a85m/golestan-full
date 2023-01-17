@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Admin\Role;
 use App\Models\Client\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 
 class RegisterController extends Controller
@@ -41,8 +43,32 @@ class RegisterController extends Controller
         }catch (\Exception $e){
             return redirect(route('home'))->with('error', 'عملیات ثبت نام موفقیت آمیز نبود!');
         }
+    }
 
+    public function login(LoginRequest $request)
+    {
+        try {
+            $user = User::query()->where('stuNum', $request->get('username'))->first();
+            if ($user){
+                if (!Hash::check($request->get('password'), $user->password)){
+                    return redirect(route('home'))->withErrors('error', 'نام کاربری یا رمز عبور اشتباه است.');
+                }else{
+                    // login
+                    auth()->login($user);
+                    return redirect(route('dashboard.info'));
+                }
+            }else{
+                return redirect(route('home'))->with('error', 'نام کاربری یا رمز عبور اشتباه است.');
+            }
+        }catch (\Exception $e){
+            return redirect(route('home'))->with('error', 'مشکلی به وجود آمده است. لطفا بعدا دوباره تلاش کنید!');
+        }
+    }
 
+    public function logout()
+    {
+        auth()->logout();
 
+        return redirect(route('home'));
     }
 }

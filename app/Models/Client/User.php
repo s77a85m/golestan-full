@@ -3,6 +3,9 @@
 namespace App\Models\Client;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Admin\Grade;
+use App\Models\Admin\Major;
+use App\Models\Admin\Orientation;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -46,5 +49,20 @@ class User extends Authenticatable
                 'source' => ['firstname', 'lastname']
             ]
         ];
+    }
+
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
+
+    public function major()
+    {
+        return $this->belongsTo(Major::class);
+    }
+
+    public function orientation()
+    {
+        return $this->belongsTo(Orientation::class);
     }
 }
