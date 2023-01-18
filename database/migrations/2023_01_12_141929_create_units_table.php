@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('units', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->integer('unit_deg')->unique();
-            $table->integer('unit_num')->unique();
-            $table->integer('unit_gp')->unique();
+            $table->string('unit_deg');
+            $table->string('unit_num')->unique();
+            $table->string('unit_gp');
             $table->string('slug')->nullable();
             $table->foreignId('orientation_id')->constrained('orientations');
-            $table->foreignId('prerequisite_id')->constrained('units');
+            $table->foreignId('unit_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

@@ -64,7 +64,7 @@
                               d="M4.5 3.75a3 3 0 00-3 3v10.5a3 3 0 003 3h15a3 3 0 003-3V6.75a3 3 0 00-3-3h-15zm4.125 3a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5zm-3.873 8.703a4.126 4.126 0 017.746 0 .75.75 0 01-.351.92 7.47 7.47 0 01-3.522.877 7.47 7.47 0 01-3.522-.877.75.75 0 01-.351-.92zM15 8.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15zM14.25 12a.75.75 0 01.75-.75h3.75a.75.75 0 010 1.5H15a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15z"
                               clip-rule="evenodd"/>
                     </svg>
-                    <span class="text-sm text-gray-300 duration-150 group-hover:text-gray-200">اطلاعات جامع دانشجو</span>
+                    <span class="text-xs text-gray-300 duration-150 group-hover:text-gray-200">اطلاعات جامع دانشجو</span>
                 </div>
                 <!--        select unit -->
                 <div x-on:click="openSubUnit()" x-cloak x-bind:class="{'hidden' : !openSidebar}" class="flex flex-row items-center justify-between w-full gap-3 px-2 mb-2 duration-150 rounded-md hover:bg-white hover:bg-opacity-10 h-9 hover:cursor-pointer group">
@@ -73,7 +73,7 @@
                             <path fill-rule="evenodd" d="M7.502 6h7.128A3.375 3.375 0 0118 9.375v9.375a3 3 0 003-3V6.108c0-1.505-1.125-2.811-2.664-2.94a48.972 48.972 0 00-.673-.05A3 3 0 0015 1.5h-1.5a3 3 0 00-2.663 1.618c-.225.015-.45.032-.673.05C8.662 3.295 7.554 4.542 7.502 6zM13.5 3A1.5 1.5 0 0012 4.5h4.5A1.5 1.5 0 0015 3h-1.5z" clip-rule="evenodd" />
                             <path fill-rule="evenodd" d="M3 9.375C3 8.339 3.84 7.5 4.875 7.5h9.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 013 20.625V9.375zm9.586 4.594a.75.75 0 00-1.172-.938l-2.476 3.096-.908-.907a.75.75 0 00-1.06 1.06l1.5 1.5a.75.75 0 001.116-.062l3-3.75z" clip-rule="evenodd" />
                         </svg>
-                        <span class="text-sm text-gray-300 duration-150 group-hover:text-gray-200">انتخاب واحد</span>
+                        <span class="text-xs text-gray-300 duration-150 group-hover:text-gray-200">انتخاب واحد</span>
                     </div>
                     <!--                arrow -->
                     <div>
@@ -95,7 +95,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gray-300 duration-150 group-hover:text-gray-200">
                         <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
                     </svg>
-                    <span class="text-sm text-gray-300 duration-150 group-hover:text-gray-200">درخواست ها</span>
+                    <span class="text-xs text-gray-300 duration-150 group-hover:text-gray-200">درخواست ها</span>
                 </div>
                 <!--        logout -->
                 <form action="{{route('student.logout')}}" method="post" x-cloak x-bind:class="{'hidden' : !openSidebar}" class="flex bg-red-500 flex-row items-center w-full mb-2 duration-150 rounded-md hover:bg-red-400 hover:bg-opacity-50 h-9 hover:cursor-pointer group">
@@ -106,7 +106,7 @@
                             <path fill-rule="evenodd" d="M3 4.25A2.25 2.25 0 015.25 2h5.5A2.25 2.25 0 0113 4.25v2a.75.75 0 01-1.5 0v-2a.75.75 0 00-.75-.75h-5.5a.75.75 0 00-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 00.75-.75v-2a.75.75 0 011.5 0v2A2.25 2.25 0 0110.75 18h-5.5A2.25 2.25 0 013 15.75V4.25z" clip-rule="evenodd" />
                             <path fill-rule="evenodd" d="M6 10a.75.75 0 01.75-.75h9.546l-1.048-.943a.75.75 0 111.004-1.114l2.5 2.25a.75.75 0 010 1.114l-2.5 2.25a.75.75 0 11-1.004-1.114l1.048-.943H6.75A.75.75 0 016 10z" clip-rule="evenodd" />
                         </svg>
-                        <span class="text-sm text-gray-300 duration-150 group-hover:text-gray-200">خروج</span>
+                        <span class="text-xs text-gray-300 duration-150 group-hover:text-gray-200">خروج</span>
                     </button>
                 </form>
             </div>

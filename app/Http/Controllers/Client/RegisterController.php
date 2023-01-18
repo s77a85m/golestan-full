@@ -39,7 +39,7 @@ class RegisterController extends Controller
                 'orientation_id' => $request->get('orientation'),
                 'role_id' => $role->id,
             ]);
-            return redirect(route('home'))->with('status', 'ثبت نام با موفقیت انجام شد.');
+            return redirect(route('home'))->with('status', "ثبت نام با موفقیت انجام شد. شماره دانشجویی شما : $stuNum");
         }catch (\Exception $e){
             return redirect(route('home'))->with('error', 'عملیات ثبت نام موفقیت آمیز نبود!');
         }

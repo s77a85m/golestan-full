@@ -12,14 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-// homeController
-Route::controller(\App\Http\Controllers\Client\HomeController::class)->group(function (){
-    Route::get('/', 'index')->name('home');
-    Route::get('/get_orientation_of_major', 'orientation')->name('get.orientation.major');
-});
-
+//////////////////////////////// admin
 // RoleController
 Route::controller(\App\Http\Controllers\Admin\RoleController::class)->group(function (){
     Route::get('/admin/role_gss_e_group/', 'index')->name('admin.role.index');
@@ -27,6 +20,22 @@ Route::controller(\App\Http\Controllers\Admin\RoleController::class)->group(func
     Route::get('/show_permissions_of_role', 'permissions')->name('admin.role.show.permission');
     Route::patch('/admin/role_gss_e_group/update/{role}', 'update')->name('admin.role.update');
     Route::delete('/admin/role_gss_e_group/delete/{role}', 'destroy')->name('admin.role.delete');
+});
+
+// UnitController
+Route::controller(\App\Http\Controllers\Admin\UnitController::class)->group(function (){
+    Route::get('/admin/units', 'index')->name('admin.unit.index');
+    Route::post('/admin/units', 'store')->name('admin.unit.create');
+    Route::get('/get_unit_of_orientation', 'parents')->name('admin.unit.show.parent');
+    Route::patch('/admin/units/update/{unit}', 'store')->name('admin.unit.update');
+    Route::delete('/admin/units/delete/{unit}', 'destroy')->name('admin.unit.delete');
+});
+
+///////////////////////////////  client
+// homeController
+Route::controller(\App\Http\Controllers\Client\HomeController::class)->group(function (){
+    Route::get('/', 'index')->name('home');
+    Route::get('/get_orientation_of_major', 'orientation')->name('get.orientation.major');
 });
 
 // RegisterController

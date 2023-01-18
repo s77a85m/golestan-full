@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Admin\Orientation;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,9 +23,11 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            MajorSeeder::class,
             PermissionSeeder::class,
             GradeSeeder::class,
             StudentRoleSeeder::class,
+            OrientationSeeder::class,
         ]);
     }
 }

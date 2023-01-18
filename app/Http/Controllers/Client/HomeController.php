@@ -11,6 +11,9 @@ class HomeController extends Controller
 {
     public function index()
     {
+        if (auth()->check()){
+            return redirect(route('dashboard.info'));
+        }
         $grades = Grade::all();
         $majors = Major::all();
         return view('Home.index', [

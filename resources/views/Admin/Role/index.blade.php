@@ -2,7 +2,6 @@
 
 @section('content')
 
-    <div class="m-5 bg-gray-200 h-[600px] flex flex-col rounded-md ">
         <!--            title -->
         <div class="flex flex-row items-center justify-between w-full px-3 py-4">
             <span class="font-bold font-iransans text-style">نقش ها</span>
@@ -24,7 +23,7 @@
                 <div class="flex items-center justify-start">
                     <table class="w-full overflow-hidden bg-white rounded-md shadow-md ">
                         <thead>
-                        <tr>
+                        <tr class="text-sm">
                             <th class="w-8 p-2 border-2 border-t-0 border-b-0 border-l-0 border-r-0 border-gray-300">ردیف
                             </th>
                             <th class="p-2 border-2 border-t-0 border-b-0 border-l-0 border-gray-300">عنوان</th>
@@ -209,7 +208,6 @@
                 <div class="px-4 bg-gray-300 rounded-md h-7">بعدی</div>
             </div>
         </div>
-    </div>
 
 @endsection
 

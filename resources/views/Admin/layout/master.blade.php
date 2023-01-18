@@ -117,7 +117,9 @@
         <!-- end navbar -->
         <!-- start main -->
         <main class="container h-full">
-            @yield('content')
+            <div class="m-5 bg-gray-200 h-[600px] flex flex-col rounded-md ">
+                @yield('content')
+            </div>
         </main>
     </div>
 </div>

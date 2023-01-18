@@ -174,11 +174,11 @@
 <main class="w-full p-16">
     <!-- Announcements -->
     @if(session('error'))
-        <div id="alert" class="absolute text-xs top-20 left-5 h-12 bg-red-400 rounded-md flex p-2 justify-center items-center text-white">
+        <div id="alert_error" class="absolute text-xs top-20 left-5 h-12 bg-red-400 rounded-md flex p-2 justify-center items-center text-white">
             {{session('error')}}</div>
     @endif
     @if(session('status'))
-        <div id="alert" class="absolute text-xs top-20 left-5 h-12 bg-green-600 rounded-md flex p-2 justify-center items-center text-white">
+        <div id="alert_status" class="absolute text-xs top-20 left-5 h-12 bg-green-600 rounded-md flex p-2 justify-center items-center text-white">
             {{session('status')}}</div>
     @endif
     @if($errors->any())
@@ -229,6 +229,7 @@
                 document.getElementById("registerForm").reset();
                 document.getElementById("orientation").innerHTML = '<option selected disabled>گرایش </option>'
                 document.getElementById("file-ip-1-preview").src = "{{asset('assets/images/statics/user.jpg')}}";
+                loadCaptcha()
             },
             loginForm(){
                 this.formType = "login"
@@ -275,12 +276,19 @@
         })
      }
 
-     //handle alert
-    let alert = document.getElementById('alert');
-    if(alert != null){
+     //handle alert error
+    let alert_error = document.getElementById('alert_error');
+    if(alert_error != null){
         setTimeout(() => {
-            alert.style.display = 'none';
+            alert_error.style.display = 'none';
         }, 2000)
+    }
+    //handle alert status
+    let alert_status = document.getElementById('alert_status');
+    if(alert_status != null){
+        setTimeout(() => {
+            alert_status.style.display = 'none';
+        }, 10000)
     }
 
     // close error
@@ -292,7 +300,7 @@
 
 </script>
 <script>
-    // reload
+    // reload captcha
     function loadCaptcha(){
         let box_captcha = document.getElementById('box_captcha');
         $.ajax({
