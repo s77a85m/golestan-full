@@ -11,7 +11,7 @@
 <body dir="rtl" class="bg-gray-100 h-full overflow-hidden">
 <div x-data="sidebarMenu" class="flex w-full">
     <!--    sidebar menu -->
-    <div x-cloak x-bind:class="openSidebar ? 'w-80 duration-300' : 'w-0 duration-150'" class="bg-dark-purple flex flex-col pt-4 h-screen">
+    <div x-cloak x-bind:class="openSidebar ? 'w-80 duration-300' : 'w-0 duration-300'" class="bg-dark-purple flex flex-col pt-4 h-screen">
         <!--      iut logo -->
         <div x-cloak x-bind:class="openSidebar ? 'scale-100' : 'scale-0'" class="p-3 text-yellow-500 flex duration-150 flex-col mx-3 justify-center items-center gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="50px" height="50px"
@@ -53,19 +53,18 @@
                     <path d="M3389 1558 c-80 -102 -132 -176 -153 -216 l-16 -30 125 -63 125 -63 114 58 c63 31 119 63 125 70 8 10 -2 31 -38 82 -80 112 -185 239 -202 242 -9 2 -40 -29 -80 -80z"/>
                 </g>
             </svg>
-            <span class="text-xs h-5 overflow-hidden font-bold">Isfahan University Of Technology</span>
+            <span class="text-xs h-5 whitespace-nowrap overflow-hidden font-bold">Isfahan University Of Technology</span>
         </div>
         <!--      menu -->
         <div class="mt-8 px-3 flex flex-col">
-            <!--        information stu -->
-            <div x-cloak x-bind:class="{'hidden' : !openSidebar}" class="flex mb-2 flex-row hover:bg-white duration-150 rounded-md px-2 hover:bg-opacity-10 gap-3 w-full items-center h-9 hover:cursor-pointer group">
+            <!--        role management -->
+            <a href="{{route('admin.role.index')}}" x-cloak x-bind:class="{'hidden' : !openSidebar}" class="flex mb-2 flex-row hover:bg-white duration-150 rounded-md px-2 hover:bg-opacity-10 gap-3 w-full items-center h-9 hover:cursor-pointer group">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 duration-150 group-hover:text-gray-200 text-gray-300 h-6">
-                    <path fill-rule="evenodd"
-                          d="M4.5 3.75a3 3 0 00-3 3v10.5a3 3 0 003 3h15a3 3 0 003-3V6.75a3 3 0 00-3-3h-15zm4.125 3a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5zm-3.873 8.703a4.126 4.126 0 017.746 0 .75.75 0 01-.351.92 7.47 7.47 0 01-3.522.877 7.47 7.47 0 01-3.522-.877.75.75 0 01-.351-.92zM15 8.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15zM14.25 12a.75.75 0 01.75-.75h3.75a.75.75 0 010 1.5H15a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15z"
-                          clip-rule="evenodd"/>
+                    <path d="M10.5 1.875a1.125 1.125 0 012.25 0v8.219c.517.162 1.02.382 1.5.659V3.375a1.125 1.125 0 012.25 0v10.937a4.505 4.505 0 00-3.25 2.373 8.963 8.963 0 014-.935A.75.75 0 0018 15v-2.266a3.368 3.368 0 01.988-2.37 1.125 1.125 0 011.591 1.59 1.118 1.118 0 00-.329.79v3.006h-.005a6 6 0 01-1.752 4.007l-1.736 1.736a6 6 0 01-4.242 1.757H10.5a7.5 7.5 0 01-7.5-7.5V6.375a1.125 1.125 0 012.25 0v5.519c.46-.452.965-.832 1.5-1.141V3.375a1.125 1.125 0 012.25 0v6.526c.495-.1.997-.151 1.5-.151V1.875z" />
                 </svg>
-                <span class="text-gray-300 duration-150 group-hover:text-gray-200 text-xs">اطلاعات جامع دانشجو</span>
-            </div>
+
+                <span class="text-gray-300 whitespace-nowrap duration-150 group-hover:text-gray-200 text-xs">مدیریت نقش ها</span>
+            </a>
             <!--        select unit -->
             <div x-on:click="openSubUnit()" x-cloak x-bind:class="{'hidden' : !openSidebar}" class="flex mb-2 flex-row hover:bg-white justify-between duration-150 rounded-md px-2 hover:bg-opacity-10 gap-3 w-full items-center h-9 hover:cursor-pointer group">
                 <div class="flex flex-row items-center gap-3">
@@ -73,7 +72,7 @@
                         <path fill-rule="evenodd" d="M7.502 6h7.128A3.375 3.375 0 0118 9.375v9.375a3 3 0 003-3V6.108c0-1.505-1.125-2.811-2.664-2.94a48.972 48.972 0 00-.673-.05A3 3 0 0015 1.5h-1.5a3 3 0 00-2.663 1.618c-.225.015-.45.032-.673.05C8.662 3.295 7.554 4.542 7.502 6zM13.5 3A1.5 1.5 0 0012 4.5h4.5A1.5 1.5 0 0015 3h-1.5z" clip-rule="evenodd" />
                         <path fill-rule="evenodd" d="M3 9.375C3 8.339 3.84 7.5 4.875 7.5h9.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 013 20.625V9.375zm9.586 4.594a.75.75 0 00-1.172-.938l-2.476 3.096-.908-.907a.75.75 0 00-1.06 1.06l1.5 1.5a.75.75 0 001.116-.062l3-3.75z" clip-rule="evenodd" />
                     </svg>
-                    <span class="text-gray-300 duration-150 group-hover:text-gray-200 text-xs">انتخاب واحد</span>
+                    <span class="text-gray-300 duration-150 whitespace-nowrap group-hover:text-gray-200 text-xs">انتخاب واحد</span>
                 </div>
                 <!--                arrow -->
                 <div>
@@ -90,18 +89,44 @@
                     <li class="mb-3 p-2 hover:cursor-pointer hover:bg-white hover:bg-opacity-10 rounded-sm">برنامه هفتگی در طول انتخاب واحد</li>
                 </ul>
             </div>
+            <!--        insert data -->
+            <div x-on:click="openSubData()" x-cloak x-bind:class="{'hidden' : !openSidebar}" class="flex mb-2 flex-row hover:bg-white justify-between duration-150 rounded-md px-2 hover:bg-opacity-10 gap-3 w-full items-center h-9 hover:cursor-pointer group">
+                <div class="flex flex-row items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 duration-150 group-hover:text-gray-200 text-gray-300 h-6">
+                        <path d="M21 6.375c0 2.692-4.03 4.875-9 4.875S3 9.067 3 6.375 7.03 1.5 12 1.5s9 2.183 9 4.875z" />
+                        <path d="M12 12.75c2.685 0 5.19-.586 7.078-1.609a8.283 8.283 0 001.897-1.384c.016.121.025.244.025.368C21 12.817 16.97 15 12 15s-9-2.183-9-4.875c0-.124.009-.247.025-.368a8.285 8.285 0 001.897 1.384C6.809 12.164 9.315 12.75 12 12.75z" />
+                        <path d="M12 16.5c2.685 0 5.19-.586 7.078-1.609a8.282 8.282 0 001.897-1.384c.016.121.025.244.025.368 0 2.692-4.03 4.875-9 4.875s-9-2.183-9-4.875c0-.124.009-.247.025-.368a8.284 8.284 0 001.897 1.384C6.809 15.914 9.315 16.5 12 16.5z" />
+                        <path d="M12 20.25c2.685 0 5.19-.586 7.078-1.609a8.282 8.282 0 001.897-1.384c.016.121.025.244.025.368 0 2.692-4.03 4.875-9 4.875s-9-2.183-9-4.875c0-.124.009-.247.025-.368a8.284 8.284 0 001.897 1.384C6.809 19.664 9.315 20.25 12 20.25z" />
+                    </svg>
+                    <span class="text-gray-300 duration-150 whitespace-nowrap group-hover:text-gray-200 text-xs">داده ها</span>
+                </div>
+                <!--                arrow -->
+                <div>
+                    <svg x-cloak x-bind:class="subMenuInsertData ? 'rotate-0' : 'rotate-90'"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 duration-150 group-hover:text-gray-200 text-gray-400 h-4">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+            <!--                subMenu insertData -->
+            <div x-cloak x-bind:class="{'hidden' : !openSidebar}" class="border-r border-r-gray-500 mr-4">
+                <ul x-cloak x-bind:class="subMenuInsertData ? 'max-h-52' : 'max-h-0'" class=" pr-2 overflow-hidden transition-all ease-in-out duration-300 text-gray-300 group-hover:text-gray-200 text-xs ">
+                    <li class=" flex hover:cursor-pointer hover:bg-white hover:bg-opacity-10 rounded-sm"><a href="{{route('admin.unit.index')}}" class="flex-1 p-2">دروس</a></li>
+                    <li class="p-2 hover:cursor-pointer hover:bg-white hover:bg-opacity-10 rounded-sm">استاتید</li>
+                    <li class="mb-3 p-2 hover:cursor-pointer hover:bg-white hover:bg-opacity-10 rounded-sm">دانشجویان</li>
+                </ul>
+            </div>
             <!--        contact -->
             <div x-cloak x-bind:class="{'hidden' : !openSidebar}" class="flex flex-row hover:bg-white mb-2 duration-150 rounded-md px-2 hover:bg-opacity-10 gap-3 w-full items-center h-9 hover:cursor-pointer group">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 duration-150 group-hover:text-gray-200 text-gray-300 h-6">
                     <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
                 </svg>
-                <span class="text-gray-300 duration-150 group-hover:text-gray-200 text-xs">درخواست ها</span>
+                <span class="text-gray-300 duration-150 whitespace-nowrap group-hover:text-gray-200 text-xs">درخواست ها</span>
             </div>
         </div>
     </div>
     <div class="w-full">
         <!--start navbar  -->
-        <nav class="flex flex-row justify-between w-full px-8 bg-white shadow-sm h-14">
+        <nav class="flex flex-row bg-blue-500 justify-between w-full px-8 bg-white shadow-sm h-14">
             <!-- hamberger Menu -->
             <div class="h-full flex-center">
                 <svg x-on:click="runOpenSidebar()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -123,13 +148,14 @@
         </main>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script src="{{asset('assets/js/jquery.js')}}"></script>
 <script>
     // sidebarMenu
     function sidebarMenu(){
         return{
             openSidebar : false,
             subMenuSelectUnit : false,
+            subMenuInsertData : false,
             runOpenSidebar(){
                 if (this.openSidebar){
                     this.openSidebar = false;
@@ -142,6 +168,14 @@
                     this.subMenuSelectUnit = false;
                 }else {
                     this.subMenuSelectUnit = true;
+                }
+
+            },
+            openSubData(){
+                if (this.subMenuInsertData){
+                    this.subMenuInsertData = false;
+                }else {
+                    this.subMenuInsertData = true;
                 }
 
             }

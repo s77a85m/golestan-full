@@ -25,9 +25,10 @@ Route::controller(\App\Http\Controllers\Admin\RoleController::class)->group(func
 // UnitController
 Route::controller(\App\Http\Controllers\Admin\UnitController::class)->group(function (){
     Route::get('/admin/units', 'index')->name('admin.unit.index');
+    Route::get('/show_old_unit', 'oldUnit')->name('old.unit.index');
     Route::post('/admin/units', 'store')->name('admin.unit.create');
     Route::get('/get_unit_of_orientation', 'parents')->name('admin.unit.show.parent');
-    Route::patch('/admin/units/update/{unit}', 'store')->name('admin.unit.update');
+    Route::patch('/admin/units/update/{unit}', 'update')->name('admin.unit.update');
     Route::delete('/admin/units/delete/{unit}', 'destroy')->name('admin.unit.delete');
 });
 

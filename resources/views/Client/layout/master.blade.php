@@ -11,7 +11,7 @@
 <body dir="rtl" class="h-full overflow-hidden bg-gray-100">
     <div x-data="sidebarMenu" class="flex w-full">
         <!--    sidebar menu -->
-        <div x-cloak x-bind:class="openSidebar ? 'w-80 duration-300' : 'w-0 duration-150'" class="flex flex-col h-screen pt-4 bg-dark-purple">
+        <div x-cloak x-bind:class="openSidebar ? 'w-80 duration-300' : 'w-0 duration-300'" class="flex flex-col h-screen pt-4 bg-dark-purple">
             <!--      iut logo -->
             <div x-cloak x-bind:class="openSidebar ? 'scale-100' : 'scale-0'" class="flex flex-col items-center justify-center gap-3 p-3 mx-3 text-yellow-500 duration-150">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="50px" height="50px"
@@ -53,7 +53,7 @@
                         <path d="M3389 1558 c-80 -102 -132 -176 -153 -216 l-16 -30 125 -63 125 -63 114 58 c63 31 119 63 125 70 8 10 -2 31 -38 82 -80 112 -185 239 -202 242 -9 2 -40 -29 -80 -80z"/>
                     </g>
                 </svg>
-                <span class="h-5 overflow-hidden text-xs font-bold">Isfahan University Of Technology</span>
+                <span class="h-5 overflow-hidden whitespace-nowrap text-xs font-bold">Isfahan University Of Technology</span>
             </div>
             <!--      menu -->
             <div class="flex flex-col px-3 mt-8">
@@ -64,7 +64,7 @@
                               d="M4.5 3.75a3 3 0 00-3 3v10.5a3 3 0 003 3h15a3 3 0 003-3V6.75a3 3 0 00-3-3h-15zm4.125 3a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5zm-3.873 8.703a4.126 4.126 0 017.746 0 .75.75 0 01-.351.92 7.47 7.47 0 01-3.522.877 7.47 7.47 0 01-3.522-.877.75.75 0 01-.351-.92zM15 8.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15zM14.25 12a.75.75 0 01.75-.75h3.75a.75.75 0 010 1.5H15a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15z"
                               clip-rule="evenodd"/>
                     </svg>
-                    <span class="text-xs text-gray-300 duration-150 group-hover:text-gray-200">اطلاعات جامع دانشجو</span>
+                    <span class="text-xs text-gray-300 duration-150 whitespace-nowrap group-hover:text-gray-200">اطلاعات جامع دانشجو</span>
                 </div>
                 <!--        select unit -->
                 <div x-on:click="openSubUnit()" x-cloak x-bind:class="{'hidden' : !openSidebar}" class="flex flex-row items-center justify-between w-full gap-3 px-2 mb-2 duration-150 rounded-md hover:bg-white hover:bg-opacity-10 h-9 hover:cursor-pointer group">
@@ -73,7 +73,7 @@
                             <path fill-rule="evenodd" d="M7.502 6h7.128A3.375 3.375 0 0118 9.375v9.375a3 3 0 003-3V6.108c0-1.505-1.125-2.811-2.664-2.94a48.972 48.972 0 00-.673-.05A3 3 0 0015 1.5h-1.5a3 3 0 00-2.663 1.618c-.225.015-.45.032-.673.05C8.662 3.295 7.554 4.542 7.502 6zM13.5 3A1.5 1.5 0 0012 4.5h4.5A1.5 1.5 0 0015 3h-1.5z" clip-rule="evenodd" />
                             <path fill-rule="evenodd" d="M3 9.375C3 8.339 3.84 7.5 4.875 7.5h9.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 013 20.625V9.375zm9.586 4.594a.75.75 0 00-1.172-.938l-2.476 3.096-.908-.907a.75.75 0 00-1.06 1.06l1.5 1.5a.75.75 0 001.116-.062l3-3.75z" clip-rule="evenodd" />
                         </svg>
-                        <span class="text-xs text-gray-300 duration-150 group-hover:text-gray-200">انتخاب واحد</span>
+                        <span class="text-xs text-gray-300 whitespace-nowrap duration-150 group-hover:text-gray-200">انتخاب واحد</span>
                     </div>
                     <!--                arrow -->
                     <div>
@@ -95,7 +95,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gray-300 duration-150 group-hover:text-gray-200">
                         <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
                     </svg>
-                    <span class="text-xs text-gray-300 duration-150 group-hover:text-gray-200">درخواست ها</span>
+                    <span class="text-xs text-gray-300 duration-150 whitespace-nowrap group-hover:text-gray-200">درخواست ها</span>
                 </div>
                 <!--        logout -->
                 <form action="{{route('student.logout')}}" method="post" x-cloak x-bind:class="{'hidden' : !openSidebar}" class="flex bg-red-500 flex-row items-center w-full mb-2 duration-150 rounded-md hover:bg-red-400 hover:bg-opacity-50 h-9 hover:cursor-pointer group">
@@ -113,7 +113,7 @@
         </div>
         <!--start navbar  -->
         <div class="w-full">
-            <nav class="flex flex-row justify-between w-full px-8 bg-white shadow-sm h-14">
+            <nav class="flex flex-row bg-gradient-to-b from-cyan-500 to-gray-100 justify-between w-full px-8 h-14">
                 <!-- hamberger Menu -->
                 <div class="h-full flex-center">
                     <svg x-on:click="runOpenSidebar()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 transition-all ease-in-out cursor-pointer hover:shadow-md duration150">
@@ -122,18 +122,19 @@
                 </div>
                 <!-- avatar -->
                 <div class="h-full flex-center ">
-                    <img src="{{asset('assets/images/statics/iut-logo-690.png')}}" class="w-10 h-10 rounded-full" alt="avatar">
+                    <img src="{{'storage/'.auth()->user()->avatar}}" class="w-10 h-10 shadow-md shadow-gray-600 rounded-full" alt="avatar">
                 </div>
             </nav>
             <!-- end navbar -->
             <!-- start main -->
             <main class="container h-full">
-                <div class="m-5 bg-gray-200 h-[600px] flex flex-col rounded-md ">
+                <div class="m-5 bg-gradient-to-r from-amber-100 via-amber-50 to-amber-100 h-[600px] flex flex-col shadow-md rounded-md ">
                     @yield('content')
                 </div>
             </main>
         </div>
     </div>
+<script defer src="{{asset('assets/js/jquery.js')}}"></script>
 <script>
     function sidebarMenu(){
         return{

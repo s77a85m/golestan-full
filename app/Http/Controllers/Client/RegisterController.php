@@ -51,7 +51,7 @@ class RegisterController extends Controller
             $user = User::query()->where('stuNum', $request->get('username'))->first();
             if ($user){
                 if (!Hash::check($request->get('password'), $user->password)){
-                    return redirect(route('home'))->withErrors('error', 'نام کاربری یا رمز عبور اشتباه است.');
+                    return redirect(route('home'))->with('error', 'نام کاربری یا رمز عبور اشتباه است.');
                 }else{
                     // login
                     auth()->login($user);
