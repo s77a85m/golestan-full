@@ -32,6 +32,15 @@ Route::controller(\App\Http\Controllers\Admin\UnitController::class)->group(func
     Route::delete('/admin/units/delete/{unit}', 'destroy')->name('admin.unit.delete');
 });
 
+// ProfessorController
+Route::controller(\App\Http\Controllers\Admin\ProfessorController::class)->group(function (){
+    Route::get('/admin/professors', 'index')->name('admin.professor.index');
+    Route::post('/admin/professors', 'store')->name('admin.professor.store');
+    Route::get('/show_old_professor', 'oldProfessor')->name('old.professor.index');
+    Route::patch('/admin/professors/update/{professor}', 'update')->name('admin.professor.update');
+    Route::delete('/admin/professors/delete/{professor}', 'destroy')->name('admin.professor.delete');
+});
+
 ///////////////////////////////  client
 // homeController
 Route::controller(\App\Http\Controllers\Client\HomeController::class)->group(function (){

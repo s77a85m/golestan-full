@@ -277,7 +277,7 @@
                 }
             }
         }
-        // handle edit role
+        // handle edit unit
         function editRequest() {
             return {
                 editForm: false,

@@ -75,27 +75,27 @@
                                 <!-- name -->
                                 <div class="flex flex-row justify-end gap-1">
                                     <label for="firstname" class="after:content-['*'] after:text-red-500 font-iransans font-medium text-style flex items-center">نام</label>
-                                    <input autocomplete="off" type="text" id="firstname"  name="firstname" class="w-3/4 shadow-gray-300 shadow-md px-3 bg-gray-200 rounded-md font-iransans font-medium text-style h-9 focus:ring-0 focus:outline-none">
+                                    <input autocomplete="off" type="text" id="firstname" value="{{old('firstname')}}"  name="firstname" class="w-3/4 shadow-gray-300 shadow-md px-3 bg-gray-200 rounded-md font-iransans font-medium text-style h-9 focus:ring-0 focus:outline-none">
                                 </div>
                                 <!-- lastname -->
                                 <div class="flex flex-row justify-end gap-1">
                                     <label for="lastname" class="after:content-['*'] after:text-red-500 text-style font-iransans font-medium flex items-center">نام خانوادگی</label>
-                                    <input autocomplete="off" type="text" id="lastname"  name="lastname" class="w-3/4 shadow-gray-300 shadow-md px-3 bg-gray-200 rounded-md font-iransans font-medium text-style h-9 focus:ring-0 focus:outline-none">
+                                    <input autocomplete="off" type="text" id="lastname" value="{{old('lastname')}}"  name="lastname" class="w-3/4 shadow-gray-300 shadow-md px-3 bg-gray-200 rounded-md font-iransans font-medium text-style h-9 focus:ring-0 focus:outline-none">
                                 </div>
                                 <!-- meliCode -->
                                 <div class="flex flex-row justify-end gap-1">
                                     <label for="melicode" class="after:content-['*'] after:text-red-500 text-style font-iransans font-medium flex items-center">شماره ملی</label>
-                                    <input autocomplete="off" type="text" id="melicode" dir="ltr" name="melicode" class="w-3/4 shadow-gray-300 shadow-md px-3 bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
+                                    <input autocomplete="off" type="text" id="melicode" dir="ltr" value="{{old('melicode')}}" name="melicode" class="w-3/4 shadow-gray-300 shadow-md px-3 bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
                                 </div>
                                 <!-- phone -->
                                 <div class="flex flex-row justify-end gap-1">
                                     <label for="phone" class="after:content-['*'] after:text-red-500 text-style font-iransans font-medium flex items-center">موبایل</label>
-                                    <input autocomplete="off" type="text" id="phone" dir="ltr" name="phone" class="w-3/4 px-3 shadow-gray-300 shadow-md bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
+                                    <input autocomplete="off" type="text" id="phone" dir="ltr" value="{{old('phone')}}" name="phone" class="w-3/4 px-3 shadow-gray-300 shadow-md bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
                                 </div>
                                 <!-- email -->
                                 <div class="flex flex-row justify-end gap-1">
                                     <label for="email" class="after:content-['*'] after:text-red-500 text-style font-iransans font-medium flex items-center">ایمیل</label>
-                                    <input autocomplete="off" type="text" id="email" dir="ltr" name="email" class="w-3/4 shadow-gray-300 shadow-md px-3 bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
+                                    <input autocomplete="off" type="text" id="email" dir="ltr" value="{{old('email')}}" name="email" class="w-3/4 shadow-gray-300 shadow-md px-3 bg-gray-200 rounded-md h-9 focus:ring-0 focus:outline-none">
                                 </div>
                                 <!-- grade -->
                                 <div class="flex flex-row justify-end gap-1">

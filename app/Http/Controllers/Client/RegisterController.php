@@ -17,7 +17,7 @@ class RegisterController extends Controller
     {
         try {
             // save image
-            $path = $request->file('image')->store('/profile/'.$request->get('melicode'), 'private');
+            $path = $request->file('image')->store('/students/profile/'.$request->get('melicode'), 'private');
 
             // create stuNum
             $stuNum = '401'.random_int(100000, 999999);
@@ -39,7 +39,8 @@ class RegisterController extends Controller
                 'orientation_id' => $request->get('orientation'),
                 'role_id' => $role->id,
             ]);
-            return redirect(route('home'))->with('status', "ثبت نام با موفقیت انجام شد. شماره دانشجویی شما : $stuNum");
+            return redirect()->route('home')->with('status', "ثبت نام با موفقیت انجام شد. شماره دانشجویی شما : $stuNum")
+                ->withInput();
         }catch (\Exception $e){
             return redirect(route('home'))->with('error', 'عملیات ثبت نام موفقیت آمیز نبود!');
         }
