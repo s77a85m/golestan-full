@@ -1,10 +1,10 @@
 
 @if(session('error'))
-    <div id="alert_error" class="absolute text-xs top-20 left-5 h-12 bg-red-400 rounded-sm flex p-2 justify-center items-center text-white">
+    <div id="alert_error" class="absolute text-xs top-20 left-10 h-12 bg-red-400 rounded-sm flex p-2 justify-center items-center text-white">
         {{session('error')}}</div>
 @endif
 @if(session('status'))
-    <div id="alert_status" class="absolute text-xs top-20 left-5 h-12 bg-green-600 rounded-sm flex p-2 justify-center items-center text-white">
+    <div id="alert_status" class="absolute text-xs top-20 left-10 h-12 bg-green-600 rounded-sm flex p-2 justify-center items-center text-white">
         {{session('status')}}</div>
 @endif
 @if($errors->any())

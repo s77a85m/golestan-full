@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 //////////////////////////////// admin
 // RoleController
-Route::controller(\App\Http\Controllers\Admin\RoleController::class)->group(function (){
+Route::middleware(['auth:admin',])->controller(\App\Http\Controllers\Admin\RoleController::class)->group(function (){
     Route::get('/admin/role_gss_e_group/', 'index')->name('admin.role.index');
     Route::post('/admin/role_gss_e_group/create', 'store')->name('admin.role.create');
     Route::get('/show_permissions_of_role', 'permissions')->name('admin.role.show.permission');
@@ -23,7 +23,7 @@ Route::controller(\App\Http\Controllers\Admin\RoleController::class)->group(func
 });
 
 // UnitController
-Route::controller(\App\Http\Controllers\Admin\UnitController::class)->group(function (){
+Route::middleware(['auth:admin', \App\Http\Middleware\CheckPermission::class . ':index_unit'])->controller(\App\Http\Controllers\Admin\UnitController::class)->group(function (){
     Route::get('/admin/units', 'index')->name('admin.unit.index');
     Route::get('/show_old_unit', 'oldUnit')->name('old.unit.index');
     Route::post('/admin/units', 'store')->name('admin.unit.create');
@@ -33,7 +33,7 @@ Route::controller(\App\Http\Controllers\Admin\UnitController::class)->group(func
 });
 
 // ProfessorController
-Route::controller(\App\Http\Controllers\Admin\ProfessorController::class)->group(function (){
+Route::middleware('auth:admin')->controller(\App\Http\Controllers\Admin\ProfessorController::class)->group(function (){
     Route::get('/admin/professors', 'index')->name('admin.professor.index');
     Route::post('/admin/professors', 'store')->name('admin.professor.store');
     Route::get('/show_old_professor', 'oldProfessor')->name('old.professor.index');
@@ -41,18 +41,38 @@ Route::controller(\App\Http\Controllers\Admin\ProfessorController::class)->group
     Route::delete('/admin/professors/delete/{professor}', 'destroy')->name('admin.professor.delete');
 });
 
+// SelectUnitController
+Route::middleware('auth:admin')->controller(\App\Http\Controllers\Admin\SelectUnitController::class)->group(function (){
+    Route::get('/admin/selectUnit', 'index')->name('admin.selectUnit.index');
+    Route::post('/admin/selectUnit', 'store')->name('admin.selectUnit.store');
+});
+
+// UnitOfSelectUnitController
+Route::middleware('auth:admin')->controller(\App\Http\Controllers\Admin\UnitOfSelectUnitController::class)->group(function (){
+    Route::post('/admin/UnitOfSelectUnit', 'store')->name('admin.UnitOfSelectUnit.store');
+    Route::delete('/admin/UnitOfSelectUnit/delete/{unitOfSelectUnit}', 'destroy')->name('admin.UnitOfSelectUnit.delete');
+});
+
+// AdminLoginController
+Route::controller(\App\Http\Controllers\Admin\AdminLoginController::class)->group(function (){
+    Route::get('/admin/login/panel', 'index')->name('admin.login.panel')->middleware('guest:admin');
+    Route::post('/admin/login', 'login')->name('admin.login')->middleware('guest:admin');
+    Route::delete('/admin/logout', 'logout')->name('admin.logout')->middleware('auth:admin');
+});
+
+
 ///////////////////////////////  client
 // homeController
-Route::controller(\App\Http\Controllers\Client\HomeController::class)->group(function (){
+Route::middleware('guest')->controller(\App\Http\Controllers\Client\HomeController::class)->group(function (){
     Route::get('/', 'index')->name('home');
     Route::get('/get_orientation_of_major', 'orientation')->name('get.orientation.major');
 });
 
 // RegisterController
 Route::controller(\App\Http\Controllers\Client\RegisterController::class)->group(function (){
-    Route::post('/register', 'store')->name('register');
-    Route::post('/student/login', 'login')->name('student.login');
-    Route::delete('/student/logout', 'logout')->name('student.logout');
+    Route::post('/register', 'store')->name('register')->middleware('guest');
+    Route::post('/student/login', 'login')->name('student.login')->middleware('guest');
+    Route::delete('/student/logout', 'logout')->name('student.logout')->middleware('auth');
 });
 
 // Captcha
@@ -61,8 +81,12 @@ Route::controller(\App\Http\Controllers\Client\CaptchaController::class)->group(
 });
 
 // Client dashboard
-Route::controller(\App\Http\Controllers\Client\DashboardController::class)->group(function (){
+Route::middleware('auth')->controller(\App\Http\Controllers\Client\DashboardController::class)->group(function (){
     Route::get('/dashboard', 'index')->name('dashboard.info');
 });
 
+// UnitOfSelectUnit
+Route::middleware('auth')->controller(\App\Http\Controllers\Client\UnitOfSelectUnitController::class)->group(function (){
+    Route::get('/dashboard/selectUnit/available', 'index')->name('client.selectUnit.available');
+});
 

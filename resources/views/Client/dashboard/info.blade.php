@@ -27,7 +27,7 @@
             </div>
             <!--                avatar info -->
             <div class="flex items-start justify-center ">
-                <img src="{{'storage/'.auth()->user()->avatar}}" class="w-[10rem] h-[11rem] rounded-md"  alt="avatar">
+                <img src="{{asset('storage/'.auth()->user()->avatar)}}" class="w-[10rem] h-[11rem] rounded-md"  alt="avatar">
             </div>
         </div>
         <!--               table-->

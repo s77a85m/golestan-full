@@ -58,14 +58,14 @@
             <!--      menu -->
             <div class="flex flex-col px-3 mt-8">
                 <!--        information stu -->
-                <div x-cloak x-bind:class="{'hidden' : !openSidebar}" class="flex flex-row items-center w-full gap-3 px-2 mb-2 duration-150 rounded-md hover:bg-white hover:bg-opacity-10 h-9 hover:cursor-pointer group">
+                <a href="{{route('dashboard.info')}}" x-cloak x-bind:class="{'hidden' : !openSidebar}" class="flex flex-row items-center w-full gap-3 px-2 mb-2 duration-150 rounded-md hover:bg-white hover:bg-opacity-10 h-9 hover:cursor-pointer group">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gray-300 duration-150 group-hover:text-gray-200">
                         <path fill-rule="evenodd"
                               d="M4.5 3.75a3 3 0 00-3 3v10.5a3 3 0 003 3h15a3 3 0 003-3V6.75a3 3 0 00-3-3h-15zm4.125 3a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5zm-3.873 8.703a4.126 4.126 0 017.746 0 .75.75 0 01-.351.92 7.47 7.47 0 01-3.522.877 7.47 7.47 0 01-3.522-.877.75.75 0 01-.351-.92zM15 8.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15zM14.25 12a.75.75 0 01.75-.75h3.75a.75.75 0 010 1.5H15a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15z"
                               clip-rule="evenodd"/>
                     </svg>
                     <span class="text-xs text-gray-300 duration-150 whitespace-nowrap group-hover:text-gray-200">اطلاعات جامع دانشجو</span>
-                </div>
+                </a>
                 <!--        select unit -->
                 <div x-on:click="openSubUnit()" x-cloak x-bind:class="{'hidden' : !openSidebar}" class="flex flex-row items-center justify-between w-full gap-3 px-2 mb-2 duration-150 rounded-md hover:bg-white hover:bg-opacity-10 h-9 hover:cursor-pointer group">
                     <div class="flex flex-row items-center gap-3">
@@ -84,10 +84,10 @@
                 </div>
                 <!--                subMenu SelectUnit-->
                 <div x-cloak x-bind:class="{'hidden' : !openSidebar}" class="mr-4 border-r border-r-gray-500">
-                    <ul x-cloak x-bind:class="subMenuSelectUnit ? 'max-h-52' : 'max-h-0'" class="pr-2 overflow-hidden text-xs text-gray-300 transition-all duration-300 ease-in-out group-hover:text-gray-200">
-                        <li class="p-2 rounded-sm hover:cursor-pointer hover:bg-white hover:bg-opacity-10">لیست دروس اراعه شده</li>
-                        <li class="p-2 rounded-sm hover:cursor-pointer hover:bg-white hover:bg-opacity-10">ثبت دروس</li>
-                        <li class="p-2 mb-3 rounded-sm hover:cursor-pointer hover:bg-white hover:bg-opacity-10">برنامه هفتگی در طول انتخاب واحد</li>
+                    <ul x-cloak x-bind:class="subMenuSelectUnit ? 'max-h-52' : 'max-h-0'" class="pr-2 overflow-hidden transition-all ease-in-out duration-500 text-gray-300 group-hover:text-gray-200 text-xs ">
+                        <li class="flex rounded-sm hover:cursor-pointer hover:bg-white hover:bg-opacity-10"><a href="{{route('client.selectUnit.available')}}" class="flex-1 p-2">دروس ارائه شده</a></li>
+                        <li class="flex rounded-sm hover:cursor-pointer hover:bg-white hover:bg-opacity-10"><a href="#" class="flex-1 p-2">انتخاب واحد</a></li>
+                        <li class="flex mb-3 rounded-sm hover:cursor-pointer hover:bg-white hover:bg-opacity-10"><a href="#" class="flex-1 p-2">برنامه هفتگی دانشجو</a></li>
                     </ul>
                 </div>
                 <!--        contact -->
@@ -122,7 +122,7 @@
                 </div>
                 <!-- avatar -->
                 <div class="h-full flex-center ">
-                    <img src="{{'storage/'.auth()->user()->avatar}}" class="w-10 h-10 shadow-md shadow-gray-600 rounded-full" alt="avatar">
+                    <img src="{{asset('storage/'.auth()->user()->avatar)}}" class="w-10 h-10 shadow-md shadow-gray-600 rounded-full" alt="avatar">
                 </div>
             </nav>
             <!-- end navbar -->

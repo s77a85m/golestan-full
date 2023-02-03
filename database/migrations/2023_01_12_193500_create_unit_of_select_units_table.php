@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('unit_of_select_units', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->integer('unit_deg');
+            $table->integer('count');
             $table->integer('unit_num');
             $table->string('slug')->nullable();
             $table->foreignId('professor_id')->constrained('professors');
-            $table->timestamp('date_class');
-            $table->timestamp('date_quiz');
+            $table->foreignId('selectUnit_id')->constrained('select_units');
+            $table->json('date_class')->nullable();
+            $table->json('date_quiz')->nullable();
             $table->timestamps();
         });
     }

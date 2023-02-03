@@ -24,7 +24,7 @@ class RegisterController extends Controller
             // create password
             $password = bcrypt($request->get('melicode'));
 
-            $role = Role::query()->where('title', 'Student')->first();
+            $role = Role::query()->where('title', 'student')->first();
             User::query()->create([
                 'firstname' => $request->get('firstname'),
                 'lastname' => $request->get('lastname'),

@@ -26,4 +26,8 @@ class Orientation extends Model
         return $this->hasMany(Unit::class);
     }
 
+    public function selectUnits()
+    {
+        return $this->hasMany(SelectUnit::class);
+    }
 }

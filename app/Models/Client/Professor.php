@@ -5,6 +5,7 @@ namespace App\Models\Client;
 use App\Models\Admin\Major;
 use App\Models\Admin\Orientation;
 use App\Models\Admin\Position;
+use App\Models\Admin\Role;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -37,5 +38,10 @@ class Professor extends Model
     public function major()
     {
         return $this->belongsTo(Major::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }

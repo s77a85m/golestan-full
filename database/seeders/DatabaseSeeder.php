@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
             GradeSeeder::class,
             StudentRoleSeeder::class,
             OrientationSeeder::class,
+            AdminSeeder::class,
+            PositionSeeder::class,
         ]);
     }
 }

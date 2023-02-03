@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('major_id')->references('id')->on('majors');
             $table->foreignId('orientation_id')->constrained('orientations');
             $table->foreignId('position_id')->constrained('positions');
+            $table->foreignId('role_id')->constrained('roles');
             $table->timestamps();
         });
     }

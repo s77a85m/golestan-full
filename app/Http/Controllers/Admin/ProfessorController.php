@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Major;
 use App\Models\Admin\Orientation;
 use App\Models\Admin\Position;
+use App\Models\Admin\Role;
 use App\Models\Client\Professor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -32,6 +33,7 @@ class ProfessorController extends Controller
         try {
             $username = '000'.random_int(100000, 999999);
             $image_path = $request->file('image')->store('/professors/profile/'.$username, 'private');
+            $role = Role::query()->where('title', 'professor')->first();
             Professor::query()->create([
                 'name' => $request->get('fullName'),
                 'username' => (string) $username,
@@ -41,6 +43,7 @@ class ProfessorController extends Controller
                 'major_id' => $request->get('major'),
                 'orientation_id' => $request->get('orientation'),
                 'position_id' => $request->get('position'),
+                'role_id' => $role->id,
             ]);
             return redirect(route('admin.professor.index'))->with('status', 'استاد جدید اضافه شد.');
         }catch (\Exception $e){

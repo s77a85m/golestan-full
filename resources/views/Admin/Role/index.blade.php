@@ -6,6 +6,7 @@
         <div class="flex flex-row items-center justify-between w-full px-3 py-4">
             <span class="font-bold font-iransans text-style">نقش ها</span>
             <img src="{{asset('assets/images/statics/iut-logo-690.png')}}" class="w-9 h-9" alt="IUT">
+            @include('Admin.alerts.alerts')
         </div>
         <!--            content -->
         <div x-data="editRole" class="flex flex-col justify-between w-full h-full px-10 py-5">
@@ -233,6 +234,27 @@
                     document.getElementById("edit-role-form").reset();
                 }
             }
+        }
+
+        //handle alert error
+        let alert_error = document.getElementById('alert_error');
+        if(alert_error != null){
+            setTimeout(() => {
+                alert_error.style.display = 'none';
+            }, 2000)
+        }
+        //handle alert status
+        let alert_status = document.getElementById('alert_status');
+        if(alert_status != null){
+            setTimeout(() => {
+                alert_status.style.display = 'none';
+            }, 2000)
+        }
+
+        // close error
+        function close_error(){
+            let box_error = document.getElementById('box_error');
+            box_error.style.display = 'none';
         }
 
         // select all checkbox in new

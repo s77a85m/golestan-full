@@ -6,6 +6,7 @@ namespace App\Models\Client;
 use App\Models\Admin\Grade;
 use App\Models\Admin\Major;
 use App\Models\Admin\Orientation;
+use App\Models\Admin\Role;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -64,5 +65,15 @@ class User extends Authenticatable
     public function orientation()
     {
         return $this->belongsTo(Orientation::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function semester()
+    {
+        return $this->hasMany(Semester::class);
     }
 }

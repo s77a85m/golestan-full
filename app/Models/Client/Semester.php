@@ -1,21 +1,16 @@
 <?php
 
-namespace App\Models\Admin;
+namespace App\Models\Client;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Semester extends Model
 {
     use HasFactory, Sluggable;
 
     protected $guarded = [];
-
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class);
-    }
 
     public function sluggable(): array
     {
@@ -26,8 +21,8 @@ class Role extends Model
         ];
     }
 
-    public function hasPermission($permission)
+    public function user()
     {
-        return $this->permissions()->where('title', $permission)->exists();
+        return $this->belongsTo(User::class);
     }
 }
